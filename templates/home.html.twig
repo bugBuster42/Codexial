@@ -4,4 +4,7 @@
 {% endblock %}
 {% block body %}
 	<h1>Accueil App Codexial</h1>
+	<form action="{{ path('app_login') }}" method="post">
+		<button type="submit">Se connecter</button>
+	</form>
 {% endblock %}
