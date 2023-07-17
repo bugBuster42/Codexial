@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil Vendeur
+{% endblock %}
+
+{% block body %}
+	<h1>Bienvenue,
+		{{ seller.firstname }}
+		{{ seller.lastname }}!</h1>
+
+	<a href="{{ path('new_sale') }}" class="btn btn-primary">Nouvelle Vente</a>
+	<a href="{{ path('invoice') }}" class="btn btn-primary">Facture</a>
+	<a href="{{ path('sales_archive') }}" class="btn btn-primary">Archives Ventes</a>
+{% endblock %}
