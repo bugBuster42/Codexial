@@ -1,0 +1,17 @@
+@import "variables";
+
+.vh-100 {
+    background-color: $secondary;
+}
+
+.btn-submit {
+    background-color: $secondary;
+}
+
+.btn-submit {
+    color: $light;
+}
+
+.btn-submit:hover {
+    background-color: $fourthly;
+  }
