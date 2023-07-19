@@ -2,21 +2,22 @@
 
 namespace App\Controller;
 
+use App\Entity\Sale;
+use App\Form\SaleType;
+use App\Repository\SaleRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class SellerController extends AbstractController
 {
     #[Route('/vendeur', name: 'home_seller')]
+    #[IsGranted('ROLE_USER')]
     public function index(): Response
     {
-        // Vérifiez si l'utilisateur est connecté
-        if (!$this->getUser()) {
-            throw new AccessDeniedException('Vous devez être connecté en tant que vendeur pour accéder à cette page.');
-        }
 
         $seller = $this->getuser();
 
@@ -25,25 +26,27 @@ class SellerController extends AbstractController
         ]);
     }
 
-    #[Route('/vendeur/nouvelle-vente', name: 'new_sale')]
-    public function newSale(Request $request): Response
+    #[Route('/vendeur/nouvelle-vente', name: 'newSale')]
+    public function newSale(Request $request, SaleRepository $saleRepository): Response
     {
         $sale = new Sale();
 
         // Créer le formulaire de création de vente
-        $form = $this->createForm(NewSaleType::class, $sale);
+        $form = $this->createForm(SaleType::class, $sale);
 
         // Gérer la soumission du formulaire
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Traiter les données du formulaire (par exemple, enregistrer la vente en base de données)
+            // Enregistrer la vente en base de données en utilisant le SaleRepository
+            $saleRepository->save($sale);
+
 
             // Rediriger vers une autre page après la création de la vente
-            return $this->redirectToRoute('sales_archive');
+            return $this->redirectToRoute('home_seller');
         }
 
-        return $this->render('seller/new_sale.html.twig', [
+        return $this->render('seller/newSale.html.twig', [
             'form' => $form->createView(),
         ]);
     }

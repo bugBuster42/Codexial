@@ -10,7 +10,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserFixtures extends Fixture
 {
-
+    const NUM_USERS = 30;
     private UserPasswordHasherInterface $passwordHasher;
 
     public function __construct(UserPasswordHasherInterface $passwordHasher)
@@ -38,7 +38,7 @@ class UserFixtures extends Fixture
         $fixedSeller->setPassword($this->passwordHasher->hashPassword($fixedSeller, 'azertyuiop'));
         $manager->persist($fixedSeller);
 
-        for ($i = 0; $i < 30; $i++) {
+        for ($i = 0; $i < self::NUM_USERS; $i++) {
             $seller = new User();
             $seller->setEmail($faker->email);
             $seller->setRoles(['ROLE_USER']);

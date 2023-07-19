@@ -15,6 +15,17 @@ class LoginController extends AbstractController
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
 
+        if ($this->getUser()) {
+            $roles = $this->getUser()->getRoles();
+
+            // Rediriger l'utilisateur vers la page appropriée en fonction de ses rôles
+            if (in_array('ROLE_USER', $roles)) {
+                return $this->redirectToRoute('home_seller');
+            } elseif (in_array('ROLE_ADMIN', $roles)) {
+                // Redirection vers la page admin à définir
+                return $this->redirectToRoute('newSale');
+            }
+        }
 
         return $this->render('login/index.html.twig', [
             'last_username' => $lastUsername,

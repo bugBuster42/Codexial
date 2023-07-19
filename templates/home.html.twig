@@ -3,8 +3,7 @@
 {% block title %}Codexial
 {% endblock %}
 {% block body %}
-	<h1>Codexiapp</h1>
-	<form action="{{ path('app_login') }}" method="post">
-		<button type="submit">Se connecter</button>
+	<form action="{{ path('app_logout') }}" method="post">
+		<button type="submit">Se déconnecter</button>
 	</form>
 {% endblock %}
