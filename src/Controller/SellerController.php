@@ -14,7 +14,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class SellerController extends AbstractController
 {
-    #[Route('/vendeur', name: 'home_seller')]
+    #[Route('/vendeur', name: 'app_home_seller')]
     #[IsGranted('ROLE_USER')]
     public function index(): Response
     {
@@ -26,7 +26,7 @@ class SellerController extends AbstractController
         ]);
     }
 
-    #[Route('/vendeur/nouvelle-vente', name: 'newSale')]
+    #[Route('/vendeur/nouvelle-vente', name: 'app_newSale')]
     public function newSale(Request $request, SaleRepository $saleRepository): Response
     {
         $sale = new Sale();
@@ -43,7 +43,7 @@ class SellerController extends AbstractController
 
 
             // Rediriger vers une autre page après la création de la vente
-            return $this->redirectToRoute('home_seller');
+            return $this->redirectToRoute('app_home_seller');
         }
 
         return $this->render('seller/newSale.html.twig', [
@@ -51,7 +51,7 @@ class SellerController extends AbstractController
         ]);
     }
 
-    #[Route('/vendeur/facture', name: 'invoice')]
+    #[Route('/vendeur/facture', name: 'app_invoice')]
     public function invoice(): Response
     {
         // TODO: Add logic for the invoice page
@@ -59,7 +59,7 @@ class SellerController extends AbstractController
         return $this->render('seller/invoice.html.twig');
     }
 
-    #[Route('/vendeur/archives-ventes', name: 'sales_archive')]
+    #[Route('/vendeur/archives-ventes', name: 'app_sales_archive')]
     public function salesArchive(): Response
     {
         // TODO: Add logic for the sales archive page

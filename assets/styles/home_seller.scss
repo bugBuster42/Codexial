@@ -3,15 +3,33 @@
 .vh-100 {
     background-color: $secondary;
 }
+h4{
+    padding: 10px;
+}
 
-.btn-submit {
+.btn-form{
     background-color: $secondary;
-}
-
-.btn-submit {
     color: $light;
+    margin: 20px;
+    font-size: 2.5rem;
+    min-width: 20rem;
 }
 
-.btn-submit:hover {
+.btn-form:hover {
     background-color: $fourthly;
+}
+
+.custom-height {
+display: flex;
+flex-direction: column;
+justify-content: center;
+flex-grow: 3;
+}
+
+.btn-logout {
+
+    margin: 10px;
+    font-size: 0.8rem;
+    background-color: $primary;
+    min-width: 8rem;
   }
