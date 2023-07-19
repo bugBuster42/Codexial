@@ -3,10 +3,17 @@
 .vh-100 {
     background-color: $secondary;
 }
-h4{
-    padding: 10px;
+.nameConnexion {
+    margin : 10px;
+    display:flex;
+    flex-direction: row;
+    align-items : baseline;
+    justify-content: flex-end;
+    gap: 10px;
 }
-
+h6{
+    color: $secondary;
+}
 .btn-form{
     background-color: $secondary;
     color: $light;
@@ -17,6 +24,7 @@ h4{
 
 .btn-form:hover {
     background-color: $fourthly;
+    color: $secondary;
 }
 
 .custom-height {
@@ -27,9 +35,19 @@ flex-grow: 3;
 }
 
 .btn-logout {
-
-    margin: 10px;
+    margin: 1px;
     font-size: 0.8rem;
-    background-color: $primary;
+    background-color: $fourthly;
     min-width: 8rem;
+    color: $secondary;
   }
+
+  .btn-logout:hover {
+    background-color: $secondary;
+    color: $light;
+}
+
+.img-fluid {
+    border-radius:1rem 0 0 1rem;
+
+}
