@@ -7,27 +7,27 @@
 {% endblock %}
 
 {% block body %}
-	<section class="vh-100" bg-secondary>
+	<section class="vh-100">
 		<div class="container py-5 h-100">
 			<div class="row d-flex justify-content-center align-items-center h-100">
 				<div class="col col-xl-10">
 					<div class="card" style="border-radius: 1rem;">
 						<div class="row g-0">
 							<div class="col-md-6 col-lg-5 d-none d-md-block">
-								<img src="{{ asset('build/images/codexLogin2.jpg') }}" alt="login" class="img-fluid" style="border-radius: 1rem 0 0 1rem;"/>
+								<img src="{{ asset('build/images/codexHomeSeller.jpg') }}" alt="login" class="img-fluid" style="border-radius: 1rem 0 0 1rem;"/>
 							</div>
-							<div class="col-md-6 col-lg-7 d-flex align-items-center">
-								<div class="card-body p-4 p-lg-5 text-black">
-									<h1>Bienvenue,
-										{{ seller.firstname }}
-										{{ seller.lastname }}!</h1>
-									<a href="{{ path('newSale') }}" class="btn btn-primary">Nouvelle Vente</a>
-									<a href="{{ path('invoice') }}" class="btn btn-primary">Facture</a>
-									<a href="{{ path('sales_archive') }}" class="btn btn-primary">Archives Ventes</a>
-									<form action="{{ path('app_logout') }}" method="post">
-										<button type="submit">Se déconnecter</button>
-									</form>
+							<div class="col-md-6 col-lg-7 d-flex flex-column justify-content-between">
+								<h4>Bienvenue,
+									{{ seller.firstname }}
+									{{ seller.lastname }}!</h4>
+								<div class="d-flex flex-column align-items-center custom-height">
+									<a href="{{ path('app_newSale') }}" class="btn btn-form">Nouvelle Vente</a>
+									<a href="{{ path('app_sales_archive') }}" class="btn btn-form">Archives Ventes</a>
+									<a href="{{ path('app_invoice') }}" class="btn btn-form">Facture</a>
 								</div>
+								<form action="{{ path('app_logout') }}" method="post">
+									<button type="submit" class="btn btn-form btn-logout">Se déconnecter</button>
+								</form>
 							</div>
 						</div>
 					</div>
