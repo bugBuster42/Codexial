@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle Vente
+{% endblock %}
+
+{% block body %}
+	<h1>Nouvelle Vente</h1>
+
+	{{ form_start(form) }}
+	{{ form_row(form.saleDate) }}
+	{{ form_row(form.store) }}
+	{{ form_row(form.quantity) }}
+	{{ form_row(form.revenue) }}
+	{{ form_row(form.listing) }}
+	{{ form_row(form.photoBefore) }}
+	{{ form_row(form.photoAfter) }}
+
+
+	<button type="submit">Enregistrer</button>
+	{{ form_end(form) }}
+{% endblock %}

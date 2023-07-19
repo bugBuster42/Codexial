@@ -1,5 +1,8 @@
 {% extends 'base.html.twig' %}
-
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('login') }}
+{% endblock %}
 {% block title %}Login
 {% endblock %}
 
@@ -7,22 +10,44 @@
 	{% if error %}
 		<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 	{% endif %}
+	<section class="vh-100" bg-secondary>
+		<div class="container py-5 h-100">
+			<div class="row d-flex justify-content-center align-items-center h-100">
+				<div class="col col-xl-10">
+					<div class="card" style="border-radius: 1rem;">
+						<div class="row g-0">
+							<div class="col-md-6 col-lg-5 d-none d-md-block">
+								<img src="{{ asset('build/images/codexLogin2.jpg') }}" alt="login" class="img-fluid" style="border-radius: 1rem 0 0 1rem;"/>
+							</div>
+							<div class="col-md-6 col-lg-7 d-flex align-items-center">
+								<div class="card-body p-4 p-lg-5 text-black">
+									<form action="{{ path('app_login') }}" method="post">
+										<div class="d-flex align-items-center justify-content-center mb-5 pb-1">
+											<span class="h1 fw-bold mb-0">
+												<img src="{{ asset('build/images/logo.png') }}" alt="logo">
+											</span>
+										</div>
+										<h5 class="fw-normal" style="letter-spacing: 1px;">Connectez-vous</h5>
+										<div class="form-outline mb-4">
+											<input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control form-control-lg">
+											<label class="form-label" for="username">Email</label>
+										</div>
+										<div class="form-outline mb-4">
+											<input type="password" id="password" name="_password" class="form-control form-control-lg"/>
+											<label class="form-label" for="password">Mot de passe</label>
+										</div>
+										<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+										<div class="pt-1 mb-4">
+											<button class="btn btn-submit btn-lg btn-block" type="submit">Se connecter</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
-	<form action="{{ path('app_login') }}" method="post">
-		<label for="username">Email:</label>
-		<input type="text" id="username" name="_username" value="{{ last_username }}">
-
-		<label for="password">Mot de passe:</label>
-		<input type="password" id="password" name="_password">
-
-		<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-
-
-		<input type="hidden" name="_target_path" value="{{ path('home') }}">
-
-		<button type="submit">Se connecter</button>
-	</form>
-	<form action="{{ path('app_logout') }}" method="post">
-		<button type="submit">Se déconnecter</button>
-	</form>
 {% endblock %}

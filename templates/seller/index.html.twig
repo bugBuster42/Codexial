@@ -1,14 +1,39 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Accueil Vendeur
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('home_seller') }}
+{% endblock %}
+{% block title %}Accueil vendeur
 {% endblock %}
 
 {% block body %}
-	<h1>Bienvenue,
-		{{ seller.firstname }}
-		{{ seller.lastname }}!</h1>
+	<section class="vh-100" bg-secondary>
+		<div class="container py-5 h-100">
+			<div class="row d-flex justify-content-center align-items-center h-100">
+				<div class="col col-xl-10">
+					<div class="card" style="border-radius: 1rem;">
+						<div class="row g-0">
+							<div class="col-md-6 col-lg-5 d-none d-md-block">
+								<img src="{{ asset('build/images/codexLogin2.jpg') }}" alt="login" class="img-fluid" style="border-radius: 1rem 0 0 1rem;"/>
+							</div>
+							<div class="col-md-6 col-lg-7 d-flex align-items-center">
+								<div class="card-body p-4 p-lg-5 text-black">
+									<h1>Bienvenue,
+										{{ seller.firstname }}
+										{{ seller.lastname }}!</h1>
+									<a href="{{ path('newSale') }}" class="btn btn-primary">Nouvelle Vente</a>
+									<a href="{{ path('invoice') }}" class="btn btn-primary">Facture</a>
+									<a href="{{ path('sales_archive') }}" class="btn btn-primary">Archives Ventes</a>
+									<form action="{{ path('app_logout') }}" method="post">
+										<button type="submit">Se déconnecter</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
-	<a href="{{ path('new_sale') }}" class="btn btn-primary">Nouvelle Vente</a>
-	<a href="{{ path('invoice') }}" class="btn btn-primary">Facture</a>
-	<a href="{{ path('sales_archive') }}" class="btn btn-primary">Archives Ventes</a>
 {% endblock %}
