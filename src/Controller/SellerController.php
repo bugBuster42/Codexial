@@ -38,9 +38,12 @@ class SellerController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $sale->setSeller($this->getUser());
+
             // Enregistrer la vente en base de données en utilisant le SaleRepository
             $saleRepository->save($sale);
-
+            $this->addFlash('success', 'Votre vente a bien été enregistrée');
 
             // Rediriger vers une autre page après la création de la vente
             return $this->redirectToRoute('app_home_seller');

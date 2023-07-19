@@ -7,6 +7,7 @@ use App\Entity\Store;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class SaleType extends AbstractType
 {
@@ -18,7 +19,11 @@ class SaleType extends AbstractType
             ->add('quantity')
             ->add('photoBefore')
             ->add('photoAfter')
-            ->add('listing')
+            ->add('listingFile', VichFileType::class, [
+                'required'      => false,
+                'allow_delete'  => true, // not mandatory, default is true
+                'download_uri' => true, // not mandatory, default is true
+            ])
             //->add('seller', null)
             ->add('store', null, ['choice_label' => 'name']);
     }

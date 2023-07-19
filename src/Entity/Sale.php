@@ -5,8 +5,11 @@ namespace App\Entity;
 use App\Repository\SaleRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: SaleRepository::class)]
+#[Vich\Uploadable]
 class Sale
 {
     #[ORM\Id]
@@ -21,7 +24,7 @@ class Sale
     #[ORM\JoinColumn(nullable: false)]
     private ?User $seller = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 2, scale: 2)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 12, scale: 2)]
     private ?string $revenue = null;
 
     #[ORM\Column]
@@ -33,8 +36,11 @@ class Sale
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $photoAfter = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: 'string', length: 255)]
     private ?string $listing = null;
+
+    #[Vich\UploadableField(mapping: 'listing_file', fileNameProperty: 'listing')]
+    private ?File $listingFile = null;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
@@ -139,5 +145,16 @@ class Sale
         $this->store = $store;
 
         return $this;
+    }
+
+    public function setListingFile(File $listing = null): Sale
+    {
+        $this->listingFile = $listing;
+        return $this;
+    }
+
+    public function getListingFile(): ?File
+    {
+        return $this->listingFile;
     }
 }
