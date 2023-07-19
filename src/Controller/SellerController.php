@@ -29,6 +29,8 @@ class SellerController extends AbstractController
     #[Route('/vendeur/nouvelle-vente', name: 'app_newSale')]
     public function newSale(Request $request, SaleRepository $saleRepository): Response
     {
+        $seller = $this->getUser();
+
         $sale = new Sale();
 
         // Créer le formulaire de création de vente
@@ -39,7 +41,7 @@ class SellerController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $sale->setSeller($this->getUser());
+            $sale->setSeller($seller);
 
             // Enregistrer la vente en base de données en utilisant le SaleRepository
             $saleRepository->save($sale);
@@ -51,6 +53,7 @@ class SellerController extends AbstractController
 
         return $this->render('seller/newSale.html.twig', [
             'form' => $form->createView(),
+            'seller' => $seller,
         ]);
     }
 

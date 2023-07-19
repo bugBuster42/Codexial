@@ -1,0 +1,71 @@
+@import "variables";
+
+.vh-100 {
+    background-color: $secondary;
+}
+.card {
+    border-radius: 1rem;
+}
+.custom-tertiary {
+    background-color: $tertiary;
+    border-radius: 1rem 0 0 1rem;
+}
+.nameConnexion {
+    margin : 10px;
+    display:flex;
+    flex-direction: row;
+    align-items : baseline;
+    justify-content: flex-start;
+    gap: 4rem;
+}
+h4{
+    margin-block-end: 2rem;
+}
+
+h6{
+    color: $secondary;
+}
+.custom-height {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 3;
+    color : $secondary;
+    margin: 0 auto;
+}
+.btn-form:hover {
+    background-color: $fourthly;
+}
+
+.btn-logout {
+    margin: 1px;
+    font-size: 0.8rem;
+    background-color: $fourthly;
+    min-width: 8rem;
+    color: $secondary;
+  }
+.btn-logout:hover {
+    background-color: $secondary;
+    color: $light;
+}
+.btn-form {
+    margin: 1px;
+    font-size: 1rem;
+    background-color: $secondary;
+    min-width: 8rem;
+    color: $light;
+  }
+.btn-form:hover {
+    background-color: $fourthly;
+}
+.img-fluid {
+    border-radius: 0 1rem 1rem 0;
+    object-fit: cover;
+}
+.form-control {
+    margin-block-end: 0.8rem;
+}
+.form-control:focus {
+    outline: none;
+    box-shadow: 0 0 5px $secondary; 
+}

@@ -1,21 +1,52 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Nouvelle Vente
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('newSale') }}
+{% endblock %}
+{% block title %}Nouvelle vente
 {% endblock %}
 
 {% block body %}
-	<h1>Nouvelle Vente</h1>
+	<section class="vh-100">
+		<div class="container py-5 h-100">
+			<div class="row d-flex justify-content-center align-items-center h-100">
+				<div class="col col-xl-10">
+					<div class="card">
+						<div class="row g-0">
+							<div class="col-md-6 col-lg-7 d-flex flex-column justify-content-between custom-tertiary">
+								<div class="nameConnexion">
+									<h6>Connecté(e) en tant que
+										{{ seller.firstname }}
+										{{ seller.lastname }}</h6>
+									<form action="{{ path('app_logout') }}" method="post">
+										<button type="submit" class="btn btn-logout">Déconnexion</button>
+									</form>
+								</div>
 
-	{{ form_start(form) }}
-	{{ form_row(form.saleDate) }}
-	{{ form_row(form.store) }}
-	{{ form_row(form.quantity) }}
-	{{ form_row(form.revenue) }}
-	{{ form_row(form.listingFile) }}
-	{{ form_row(form.photoBefore) }}
-	{{ form_row(form.photoAfter) }}
+								<div class="custom-height">
+									<h4>Nouvelle Vente</h4>
 
+									{{ form_start(form) }}
 
-	<button type="submit">Enregistrer</button>
-	{{ form_end(form) }}
+									{{ form_row(form.saleDate, {'attr': {'class': 'form-control'}}) }}
+									{{ form_row(form.store, {'attr': {'class': 'form-control'}}) }}
+									{{ form_row(form.quantity, {'attr': {'class': 'form-control'}}) }}
+									{{ form_row(form.revenue, {'attr': {'class': 'form-control'}}) }}
+									{{ form_row(form.listingFile, {'attr': {'class': 'form-control'}}) }}
+									{{ form_row(form.photoBefore, {'attr': {'class': 'form-control'}}) }}
+									{{ form_row(form.photoAfter, {'attr': {'class': 'form-control'}}) }}
+
+									<button type="submit" class="btn  btn-form">Enregistrer</button>
+									{{ form_end(form) }}
+								</div>
+							</div>
+							<div class="col-md-6 col-lg-5 d-none d-md-block custom-picture">
+								<img src="{{ asset('build/images/codexHomeSeller.jpg') }}" alt="login" class="img-fluid" ;/>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 {% endblock %}
