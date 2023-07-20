@@ -1,0 +1,53 @@
+@import "variables";
+
+body {
+    background-color: $secondary;
+}
+
+thead.secondary-row th {
+    background-color: $fourthly;
+    vertical-align: middle;
+}
+
+h1 {
+    color:$light;
+    margin-block-start: 3rem;
+    margin-block-end: 2rem;
+    
+}
+main.title{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.btn-toggle {
+    background-color: $secondary;
+    color: $light;
+    text-align: center;
+  }
+
+.btn-toggle:hover {
+    background-color: $fourthly;
+}
+
+.btn-edit {
+    background-color: $fourthly;
+    color: $light;
+    text-align: center;
+    margin-left: 3rem;
+  }
+
+.btn-edit:hover {
+    background-color: $secondary;
+}
+
+.btn-edit2 {
+    background-color: $fourthly;
+    color: $light;
+    text-align: center;
+    margin-block-end: 1rem;
+  }
+
+.btn-edit2:hover {
+    background-color: $light;
+}

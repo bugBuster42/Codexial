@@ -1,0 +1,12 @@
+@import "variables";
+
+body {
+    background-color: $secondary;
+}
+h1 {
+    color:$light;
+    margin-block-start: 4rem;
+    margin-block-end: 3rem;
+    text-align: center;
+    
+}

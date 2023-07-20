@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('table_store') }}
+{% endblock %}
+
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('table_store') }}
+{% endblock %}
+
+{% block title %}Tableau des ventes
+{% endblock %}
+
+{% block body %}
+	<main class="container">
+		<h1>Tableau des ventes - Point de vente "Briand"</h1>
+		<table class="table table-success table-striped table-header-fixed">
+			<thead class="secondary-row">
+				<tr>
+					<th>Date</th>
+					<th>Quantité</th>
+					<th>Chiffre d'affaires</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for sale in sales %}
+					<tr>
+						<td>{{ sale.saleDate|date('d/m/Y') }}</td>
+						<td class="text-center">{{ sale.quantity }}</td>
+						<td class="text-center">{{ sale.revenue }}
+							€</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</main>
+{% endblock %}

@@ -22,6 +22,9 @@ class Store
     #[ORM\Column(nullable: true)]
     private ?int $CIP = null;
 
+    #[ORM\Column(type: 'boolean', options: ['default' => true])]
+    private bool $active = true;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +63,17 @@ class Store
     {
         $this->CIP = $CIP;
 
+        return $this;
+    }
+
+    public function isActive(): bool
+    {
+        return $this->active;
+    }
+
+    public function setActive(bool $active): self
+    {
+        $this->active = $active;
         return $this;
     }
 }

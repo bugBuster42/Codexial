@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('_navbar_admin') }}
+{% endblock %}
+{% block body %}
+	<nav class="navbar navbar-expand-lg custom-navbar ">
+		<div class="container-fluid">
+
+			<div class="btn-group">
+				<a href="{{ path('table_store') }}" class="btn btn-primary active" aria-current="page">Consulter</a>
+				<a href="{{ path('manage_store') }}" class="btn btn-primary">Administrer</a>
+
+			</div>
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('manage_store') }}">Liste des points de ventes</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('manage_seller') }}">Liste des vendeurs</a>
+				</li>
+			</ul>
+
+		</div>
+		<form class="ml-auto" action="{{ path('app_logout') }}" method="post">
+			<button type="submit" class="btn btn-logout">Déconnexion</button>
+		</form>
+	</nav>
+{% endblock %}

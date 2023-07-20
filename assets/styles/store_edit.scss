@@ -1,0 +1,61 @@
+@import "variables";
+
+body {
+    background-color: $secondary;
+}
+h1 {
+    color:$light;
+    margin-block-start: 4rem;
+    margin-block-end: 3rem;
+    text-align: center;
+    
+}
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: $fourthly;
+}
+
+input {
+    padding: 10px;
+    margin: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 500px; 
+    display: block; 
+}
+
+.btn-logout{
+    margin: 1px;
+    font-size: 1rem;
+    background-color: $fourthly;
+    min-width: 8rem;
+    color: $light;
+  }
+
+  .btn-logout:hover{
+    background-color: $light;
+  }
+
+  .btn-return{
+    margin: 1px;
+    font-size: 0.8rem;
+    background-color: $tertiary;
+    min-width: 8rem;
+    color: $dark;
+  }
+
+  .btn-return:hover{
+    background-color: $light;
+  }
+

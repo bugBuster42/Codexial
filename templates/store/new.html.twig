@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('store_edit') }}
+{% endblock %}
+{% block title %}Ajouter un point de vente
+{% endblock %}
+
+{% block body %}
+	<main class="container">
+		<h1>Ajouter un nouveau point de vente</h1>
+
+		{{ include('store/_form.html.twig', {'button_label': 'Ajouter'}) }}
+
+		<a href="{{ path('app_store_index') }}" class="btn btn-return">>Retour à la liste des points de vente</a>
+	</main>
+{% endblock %}

@@ -31,6 +31,12 @@ Encore
     .addStyleEntry('newSale', './assets/styles/newSale.scss')
     .addStyleEntry('home_seller', './assets/styles/home_seller.scss')
     .addStyleEntry('sales_archive', './assets/styles/sales_archive.scss')
+    .addStyleEntry('manage_store', './assets/styles/manage_store.scss')
+    .addStyleEntry('manage_seller', './assets/styles/manage_seller.scss')
+    .addStyleEntry('_navbar_admin', './assets/styles/_navbar_admin.scss')
+    .addStyleEntry('store_edit', './assets/styles/store_edit.scss')
+    .addStyleEntry('table_store', './assets/styles/table_store.scss')
+    .addStyleEntry('table_seller', './assets/styles/table_seller.scss')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
