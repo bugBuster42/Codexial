@@ -1,0 +1,53 @@
+@import "variables";
+
+body {
+    background-color: $secondary;
+}
+
+.link-no-style{
+    text-decoration: none;
+    color: $secondary;
+}
+
+h1 {
+    color:$light;
+    margin-block-start: 3rem;
+    margin-block-end: 2rem;
+    
+}
+h6 {
+    color:$light;
+}
+.nameConnexion {
+    margin-block-end: 10px;
+    display:flex;
+    flex-direction: row;
+    align-items : baseline;
+    justify-content: space-between;
+    gap: 4rem;
+}
+
+.btn-logout {
+    margin: 1px;
+    font-size: 0.8rem;
+    background-color: $fourthly;
+    min-width: 8rem;
+    color: $secondary;
+  }
+.btn-logout:hover {
+    color: $light;
+}
+
+thead.secondary-row th {
+    background-color: $fourthly;
+    vertical-align: middle;
+}
+
+tfoot.secondary-row td {
+    background-color: $fourthly;
+    vertical-align: middle;
+}
+.text-center {
+    text-align: center;
+}
+
