@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Sale;
 use App\Form\SaleType;
 use App\Repository\SaleRepository;
+use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

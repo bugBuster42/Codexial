@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('manage_store') }}
+{% endblock %}
+{% block title %}Administration Point de vente
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid">
+		<div class="row">
+			{% include 'components/_navbar_admin.html.twig' %}
+			<main class="col-md-10 ms-sm-auto"></main>
+		</div>
+	</div>
+
+	<main class="container">
+		<div class"title">
+			<h1>Liste des Points de Vente</h1>
+			<a href="{{ path('app_store_new') }}" class=" btn btn-edit2">Référencer un nouveau point de vente</a>
+		</div>
+
+		<div class="table-responsive">
+			<table class="table table-success table-striped">
+				<thead class="secondary-row">
+					<tr>
+						<th>Nom</th>
+						<th>Adresse</th>
+						<th>Numéro CIP</th>
+						<th>Statut</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for store in stores %}
+						<tr>
+							<td>{{ store.name }}</td>
+							<td>{{ store.adress }}</td>
+							<td>{{ store.CIP }}</td>
+							<td>
+								{% if store.isActive() %}
+									Actif
+								{% else %}
+									Désactivé
+								{% endif %}
+							</td>
+							<td>
+								<a href="{{ path('app_store_delete', {'id': store.id}) }}" class="btn btn-toggle" onclick="event.preventDefault(); { document.getElementById('delete-form-{{ store.id }}').submit(); }">
+									Activer / Désactiver
+								</a>
+								<form id="delete-form-{{ store.id }}" method="post" action="{{ path('app_store_delete', {'id': store.id}) }}" style="display: none;">
+									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ store.id) }}">
+								</form>
+
+								<a href="{{ path('app_store_edit', {'id': store.id}) }}" class="btn btn-edit">
+									Modifier
+								</a>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="5">Pas de point de vente trouvé</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</main>
+{% endblock %}

@@ -33,6 +33,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $lastname = null;
 
+    #[ORM\Column(type: 'boolean', options: ['default' => true])]
+    private bool $active = true;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -124,6 +127,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->lastname = $lastname;
 
+        return $this;
+    }
+    public function isActive(): bool
+    {
+        return $this->active;
+    }
+
+    public function setActive(bool $active): self
+    {
+        $this->active = $active;
         return $this;
     }
 }

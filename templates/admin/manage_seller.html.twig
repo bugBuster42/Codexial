@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('manage_seller') }}
+{% endblock %}
+{% block title %}Administration Vendeur
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid">
+		<div class="row">
+			{% include 'components/_navbar_admin.html.twig' %}
+			<main class="col-md-10 ms-sm-auto"></main>
+		</div>
+	</div>
+
+	<main class="container">
+		<div class"title">
+			<h1>Liste des vendeurs</h1>
+			<a href="{{ path('app_user_new') }}" class=" btn btn-edit2">Ajouter un vendeur</a>
+		</div>
+
+		<table class="table table-success table-striped table-header-fixed">
+			<thead class="secondary-row">
+				<tr>
+					<th>Nom</th>
+					<th>Prénom</th>
+					<th>Email</th>
+					<th>Statut</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for user in users %}
+					<tr>
+						<td>{{ user.lastname }}</td>
+						<td>{{ user.firstname }}</td>
+						<td>{{ user.email }}</td>
+						<td>
+							{% if user.isActive() %}
+								Actif
+							{% else %}
+								Désactivé
+							{% endif %}
+						</td>
+						<td class="d-flex justify-content-center">
+							<a href="{{ path('app_user_delete', {'id': user.id}) }}" class="btn btn-toggle" onclick="event.preventDefault(); { document.getElementById('delete-form-{{ user.id }}').submit(); }">
+								Activer / Désactiver
+							</a>
+							<form id="delete-form-{{ user.id }}" method="post" action="{{ path('app_user_delete', {'id': user.id}) }}" style="display: none;">
+								<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+							</form>
+							<a href="{{ path('app_user_edit', {'id': user.id}) }}" class="btn btn-edit">
+								Modifier
+							</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="5">Pas de vendeur trouvé</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+
+	</main>
+{% endblock %}

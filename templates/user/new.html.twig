@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('store_edit') }}
+{% endblock %}
+{% block title %}Ajouter un vendeur
+{% endblock %}
+
+{% block body %}
+	<main class="container">
+		<h1>Ajouter un nouveau vendeur</h1>
+
+		{{ include('user/_form.html.twig',{'button_label': 'Ajouter'}) }}
+
+		<a href="{{ path('app_user_index') }}" class="btn btn-return">>Retour à la liste des vendeurs</a>
+	</main>
+{% endblock %}
