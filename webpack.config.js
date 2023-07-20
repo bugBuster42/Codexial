@@ -30,6 +30,7 @@ Encore
     .addStyleEntry('login', './assets/styles/login.scss')
     .addStyleEntry('newSale', './assets/styles/newSale.scss')
     .addStyleEntry('home_seller', './assets/styles/home_seller.scss')
+    .addStyleEntry('sales_archive', './assets/styles/sales_archive.scss')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()

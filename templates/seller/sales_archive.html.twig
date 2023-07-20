@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('sales_archive') }}
+{% endblock %}
+{% block title %}Archives des ventes
+{% endblock %}
+
+{% block body %}
+
+	<main class="container">
+		<h1>Archives des ventes</h1>
+		<div class="nameConnexion">
+			<h6>Connecté(e) en tant que
+				{{ seller.firstname }}
+				{{ seller.lastname }}</h6>
+			<form action="{{ path('app_logout') }}" method="post">
+				<button type="submit" class="btn btn-logout">Déconnexion</button>
+			</form>
+		</div>
+		<table class="table table-success table-striped table-header-fixed">
+			<thead class="secondary-row">
+				<tr>
+					<th>Date</th>
+					<th>Point de vente</th>
+					<th>Chiffre d'affaires</th>
+					<th>% d'évolution</th>
+					<th>Nb de boites</th>
+					<th>Photo avant</th>
+					<th>Photo après</th>
+					<th>Listing</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% set previousRevenue = null %}
+				{% for sale in sales %}
+					<tr>
+						<td>{{ sale.saleDate|date('d/m/Y') }}</td>
+						<td>{{ sale.store.name}}</td>
+						<td class="text-center">{{ sale.revenue }}
+							€</td>
+						<td class="text-center">
+							{% if previousRevenue is not null %}
+								{% set evolution = (sale.revenue - previousRevenue) / previousRevenue * 100 %}
+								{% if evolution > 0 %}
+									<span style="color: green;">↑</span>
+									{{ evolution | number_format(0) }}%
+								{% elseif evolution < 0 %}
+									<span style="color: red;">↓</span>
+									{{ evolution | number_format(0) }}%
+								{% else %}
+									0%
+								{% endif %}
+							{% else %}
+								N/A
+							{% endif %}
+						</td>
+						<td class="text-center">{{ sale.quantity }}</td>
+						<td>
+							{% if sale.photoBefore %}
+								<a href="{{ asset('uploads/photos/' ~ sale.photoBefore) }}" target="_blank" class="link-no-style">Voir la photo avant</a>
+							{% else %}
+								Non
+							{% endif %}
+						</td>
+						<td>
+							{% if sale.photoAfter %}
+								<a href="{{ asset('uploads/photos/' ~ sale.photoAfter) }}" target="_blank" class="link-no-style">Voir la photo après</a>
+							{% else %}
+								Non
+							{% endif %}
+						</td>
+						<td>
+							{% if sale.getListing() %}
+								<a href="{{ '/uploads/listing/' ~ sale.getListing() }}" target="_blank" class="link-no-style">Voir le listing</a>
+							{% else %}
+								Aucun fichier PDF associé
+							{% endif %}
+						</td>
+					</tr>
+					{% set previousRevenue = sale.revenue %}
+				{% endfor %}
+			</tbody>
+			<tfoot class="secondary-row">
+				<tr>
+					<td>
+						<strong>Total</strong>
+					</td>
+					<td colspan="1"></td>
+					<td class="text-center">
+						<strong>{{ totalRevenue }}
+							€</strong>
+					</td>
+					<td colspan="1"></td>
+					<td class="text-center">
+						<strong>{{ totalQuantity }}
+							boites
+						</strong>
+					</td>
+					<td colspan="3"></td>
+				</tr>
+			</tfoot>
+		</tbody>
+	</table>
+</main>{% endblock %}

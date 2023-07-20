@@ -8,8 +8,10 @@ use App\Repository\SaleRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class SellerController extends AbstractController
@@ -66,10 +68,30 @@ class SellerController extends AbstractController
     }
 
     #[Route('/vendeur/archives-ventes', name: 'app_sales_archive')]
-    public function salesArchive(): Response
+    public function salesArchive(SaleRepository $saleRepository): Response
     {
-        // TODO: Add logic for the sales archive page
-        // For example, display the list of archived sales for the seller
-        return $this->render('seller/sales_archive.html.twig');
+        $user = $this->getUser();
+        $sales = $saleRepository->findBy(
+            ['seller' => $user],
+            ['saleDate' => 'ASC']
+        );
+
+        $totalRevenue = 0;
+        foreach ($sales as $sale) {
+            $totalRevenue += (float)$sale->getRevenue();
+        }
+
+        $totalQuantity = 0;
+        foreach ($sales as $sale) {
+            $totalQuantity += $sale->getQuantity();
+        }
+
+        return $this->render('seller/sales_archive.html.twig', [
+            'sales' => $sales,
+            'seller' => $user,
+            'totalRevenue' => $totalRevenue,
+            'totalQuantity' => $totalQuantity,
+
+        ]);
     }
 }

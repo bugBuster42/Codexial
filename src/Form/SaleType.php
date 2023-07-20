@@ -38,8 +38,8 @@ class SaleType extends AbstractType
             ->add('listingFile', VichFileType::class, [
                 'label' => 'Listing des ventes',
                 'required'      => false,
-                'allow_delete'  => true, // not mandatory, default is true
-                'download_uri' => true, // not mandatory, default is true
+                'allow_delete'  => true,
+                'download_uri' => true,
             ])
             ->add('store', EntityType::class, [
                 'class' => Store::class,
