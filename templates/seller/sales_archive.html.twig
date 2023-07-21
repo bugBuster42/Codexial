@@ -14,9 +14,14 @@
 			<h6>Connecté(e) en tant que
 				{{ seller.firstname }}
 				{{ seller.lastname }}</h6>
-			<form action="{{ path('app_logout') }}" method="post">
-				<button type="submit" class="btn btn-logout">Déconnexion</button>
-			</form>
+			<div class="button_direction">
+				<form action="{{ path('app_home_seller') }}" method="post">
+					<button type="submit" class="btn btn-logout">Accueil</button>
+				</form>
+				<form action="{{ path('app_logout') }}" method="post">
+					<button type="submit" class="btn btn-logout">Déconnexion</button>
+				</form>
+			</div>
 		</div>
 		<table class="table table-success table-striped table-header-fixed">
 			<thead class="secondary-row">
