@@ -4,8 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Sale;
 use App\Form\SaleType;
+use App\Entity\Invoice;
+use App\Form\InvoiceType;
 use App\Repository\SaleRepository;
 use App\Repository\UserRepository;
+use App\Repository\InvoiceRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -36,21 +39,21 @@ class SellerController extends AbstractController
 
         $sale = new Sale();
 
-        // Créer le formulaire de création de vente
+
         $form = $this->createForm(SaleType::class, $sale);
 
-        // Gérer la soumission du formulaire
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
             $sale->setSeller($seller);
 
-            // Enregistrer la vente en base de données en utilisant le SaleRepository
+
             $saleRepository->save($sale);
             $this->addFlash('success', 'Votre vente a bien été enregistrée');
 
-            // Rediriger vers une autre page après la création de la vente
+
             return $this->redirectToRoute('app_home_seller');
         }
 
@@ -61,11 +64,26 @@ class SellerController extends AbstractController
     }
 
     #[Route('/vendeur/facture', name: 'app_invoice')]
-    public function invoice(): Response
+    public function invoice(Request $request, InvoiceRepository $invoiceRepository): Response
     {
-        // TODO: Add logic for the invoice page
-        // For example, display the list of invoices for the seller
-        return $this->render('seller/invoice.html.twig');
+        $seller = $this->getUser();
+
+        $invoice = new Invoice();
+
+        $form = $this->createForm(InvoiceType::class, $invoice);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $invoice->setSeller($seller);
+            $invoiceRepository->save($invoice);
+            $this->addFlash('success', 'La facture a été enregistrée avec succès.');
+        }
+        return $this->render('seller/invoice.html.twig', [
+            'form' => $form->createView(),
+            'seller' => $seller,
+        ]);
     }
 
     #[Route('/vendeur/archives-ventes', name: 'app_sales_archive')]

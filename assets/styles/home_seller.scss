@@ -46,12 +46,18 @@ flex-grow: 3;
     background-color: $secondary;
     color: $light;
 }
+.btn-admin{
+    margin: 1px;
+    font-size: 0.8rem;
+    background-color: $secondary;
+    min-width: 8rem;
+    color: $light;
+  }
+.btn-admin:hover {
+    background-color: $fourthly;
+    color: $secondary;
+}
 
 .img-fluid {
     border-radius:1rem 0 0 1rem;
-
-}
-
-li.nav-item a.nav-link:hover {
-    color: red; 
 }

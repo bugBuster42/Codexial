@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{# Ajoutez ici les liens vers vos fichiers CSS spécifiques pour la page invoice s'il y en a #}
+{% endblock %}
+
+{% block title %}Facture
+{% endblock %}
+
+{% block body %}
+	<section class="vh-100">
+		<div class="container py-5 h-100">
+			<div class="row d-flex justify-content-center align-items-center h-100">
+				<div class="col col-xl-10">
+					<div class="card">
+						<div class="row g-0">
+							<div class="col-md-6 col-lg-7 d-flex flex-column justify-content-between custom-tertiary">
+								<div class="nameConnexion">
+									<h6>Connecté(e) en tant que
+										{{ seller.firstname }}
+										{{ seller.lastname }}</h6>
+									<form action="{{ path('app_logout') }}" method="post">
+										<button type="submit" class="btn btn-logout">Déconnexion</button>
+									</form>
+								</div>
+
+								<div class="custom-height">
+									<h4>Facture</h4>
+
+									{# Créez le formulaire pour l'upload de la facture #}
+									{{ form_start(form) }}
+
+									{{ form_row(form.pdfFile, {'attr': {'class': 'form-control'}}) }}
+
+									<button type="submit" class="btn btn-form">Enregistrer</button>
+
+									{{ form_end(form) }}
+								</div>
+							</div>
+							<div
+								class="col-md-6 col-lg-5 d-none d-md-block custom-picture">{# Ajoutez ici une image ou tout autre contenu spécifique pour la page invoice #}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}
