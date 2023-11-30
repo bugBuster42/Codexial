@@ -30,14 +30,43 @@ These instructions will guide you on how to get a copy of the project up and run
     composer install
     ```
 
-3. **Load Data Fixtures**
+3. **Database Configuration**
    
-    - After setting up your environment, load the data fixtures to populate the application with sample data:
-      ```
-      php bin/console doctrine:fixtures:load
-      ```
-    - This command will use the `SaleFixtures` script to generate sample data for sales, users, and stores.
+    - **Update the `.env.local` File for Database Connection**:
+        - Navigate to your project directory and locate the `.env.local` file.
+        - Uncomment the MySQL database URL line and comment out the PostgreSQL line:
+          ```
+          # Comment this line if using PostgreSQL
+          #DATABASE_URL="postgresql://app:!ChangeMe!@127.0.0.1:5432/app?serverVersion=15&charset=utf8"
+          
+          # Uncomment and update this line for MySQL
+          DATABASE_URL="mysql://app:!ChangeMe!@127.0.0.1:3306/app?serverVersion=8.0.32&charset=utf8mb4"
+          ```
+        - Replace `app`, `!ChangeMe!`, and `app` in the uncommented line with your MySQL username, password, and database name, respectively.
 
+    - **Create a MySQL Database**:
+        - Open your Terminal.
+        - Connect to MySQL:
+          ```
+          mysql -u [username] -p
+          ```
+        - Create a new database:
+          ```
+          CREATE DATABASE [database_name];
+          ```
+        - Replace `[username]` and `[database_name]` with your MySQL username and the name of the new database.
+
+    - **Run Database Migrations (if applicable)**:
+        - Apply migrations to set up the database structure:
+          ```
+          php bin/console doctrine:migrations:migrate
+          ```
+
+    - **Load Data Fixtures**:
+        - Load the data fixtures to populate the application with sample data:
+          ```
+          php bin/console doctrine:fixtures:load
+          ```
 4. **Run the Application**
     - Start the Symfony server:
       ```
