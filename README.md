@@ -1,7 +1,8 @@
 # Codexial Project
 
 ## Description
-Codexial is a project developed as a two-day solo exercise. It's designed as an application for pharmacy representatives, enabling them to record the number of boxes sold in a pharmacy each day. The application also includes an admin panel for reviewing these sales data.
+Codexial is a project that was initially developed as a two-day solo exercise and will be continued as a personal project. It is envisioned as an application for pharmacy representatives to record daily sales of boxes in pharmacies. The application is also intended to include an admin panel for sales data review. Currently, not all desired functionalities are implemented or fully operational, but the project is set to evolve, with plans to enhance and expand its features in the future.
+
 
 ## Getting Started
 
