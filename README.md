@@ -59,13 +59,13 @@ These instructions will guide you on how to get a copy of the project up and run
     - **Run Database Migrations (if applicable)**:
         - Apply migrations to set up the database structure:
           ```
-          php bin/console doctrine:migrations:migrate
+          symfony console d:m:m
           ```
 
     - **Load Data Fixtures**:
         - Load the data fixtures to populate the application with sample data:
           ```
-          php bin/console doctrine:fixtures:load
+          symfony console d:f:l
           ```
 4. **Run the Application**
     - Start the Symfony server:
